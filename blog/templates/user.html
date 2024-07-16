@@ -1,0 +1,54 @@
+{% extends "master.html" %}
+
+
+{% block content%}
+<title>User</title>
+
+<center>
+  <h1><b><u> Registration of people</u></b></h1> <br>
+
+<form action="" method="POST">
+  {% csrf_token %}
+
+  Name:   <input type="integer" placeholder="Enter your Name" name="Name" required><br><br>
+  Email:  <input type="text" placeholder="Enter your Email" name="Email"  required><br><br>
+  Address:  <input type="integer" placeholder="Enter your Address" name="Address"  required><br><br>
+  Age :   <input type="integer" placeholder="Enter your Age" name="Age" required><br><br>
+  <div class="input-box button">
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </div><br><br>
+</div>
+</form>
+</center>
+<hr>
+<h1> List of People Entry</h1>
+<table width="100%" border="1">
+  <thread>
+    <tr>
+      <th>S.N</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Age</th>
+      <th>Action</th>
+    </tr>
+  </thread>
+<tbody>
+  {% for User in userdata %}
+  <tr>
+  <td>{{forloop.counter}}</td>
+  <td>{{User.Name}}</td>
+  <td>{{User.Email}}</td>
+  <td>{{User.Address}}</td>
+  <td>{{User.Age}}</td>
+  <td>
+    <a href="edit/{{User.id}}">Edit</a>
+    <a href="delete/{{User.id}}" onclick = "return confirm('Are you sure?')">Delete</a>
+  </td>
+</tr>
+ {% endfor %}
+</tbody>
+  
+</table>
+
+{% endblock %} 

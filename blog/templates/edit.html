@@ -1,0 +1,22 @@
+{% extends "master.html" %} 
+{% load static %}
+
+{% block content%}
+<center>
+  <h1><b><u> Update people</u></b></h1> <br>
+
+<form action="" method="POST">
+  {% csrf_token %}
+
+  Name:   <input type="integer" placeholder="Enter your Name" name="Name" value="{{userdata.Name}}" required><br><br>
+  Email:  <input type="text" placeholder="Enter your Email" name="Email"  readonly disabled value="{{userdata.Email}}"><br><br>
+  Address:  <input type="integer" placeholder="Enter your Address" name="Address" value="{{userdata.Address}}" required><br><br>
+  Age :   <input type="integer" placeholder="Enter your Age" name="Age" value="{{userdata.Age}}" required><br><br>
+  <div class="input-box button">
+    <button class="btn btn-primary" type="submit"> Update Button</button>
+  </div><br><br>
+</div>
+</form>
+</center>
+<hr>
+{% endblock %}
