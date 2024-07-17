@@ -10,10 +10,23 @@
 <form action="" method="POST">
   {% csrf_token %}
 
-  Name:   <input type="integer" placeholder="Enter your Name" name="Name" required><br><br>
+  Name:   <input type="text" placeholder="Enter your Name" name="Name" required><br><br>
   Email:  <input type="text" placeholder="Enter your Email" name="Email"  required><br><br>
-  Address:  <input type="integer" placeholder="Enter your Address" name="Address"  required><br><br>
-  Age :   <input type="integer" placeholder="Enter your Age" name="Age" required><br><br>
+  Address:  <input type="text" placeholder="Enter your Address" name="Address"  required><br><br>
+  Age :<input type="integer" placeholder="Enter your Age" name="Age" required><br><br>
+  Gender:
+        <label><input type="radio"  name="Gender" value="male">Male</label>
+        <label><input type="radio"  name="Gender" value="female">Female</label><br><br>
+  Country:
+   <select name="Country" id="country" required >
+    <option value="" disabled selected >--Select country--</option>
+    <option value="nepal">Nepal</option>
+    <option value="india">India</option>
+    <option value="china">China</option>
+   </select>
+  
+       
+
   <div class="input-box button">
     <button class="btn btn-primary" type="submit">Submit</button>
   </div><br><br>
@@ -30,8 +43,9 @@
       <th>Email</th>
       <th>Address</th>
       <th>Age</th>
+      <th>Gender</th>
+      <th>Country</th>
       <th>Action</th>
-    </tr>
   </thread>
 <tbody>
   {% for User in userdata %}
@@ -41,9 +55,11 @@
   <td>{{User.Email}}</td>
   <td>{{User.Address}}</td>
   <td>{{User.Age}}</td>
+  <td>{{User.Gender}}</td>
+  <td>{{User.Country}}</td>
   <td>
-    <a href="edit/{{User.id}}">Edit</a>
-    <a href="delete/{{User.id}}" onclick = "return confirm('Are you sure?')">Delete</a>
+    <a href="edit/{{User.id}}" class="btn btn-success btn-sm">Edit</a>
+    <a href="delete/{{User.id}}" class="btn btn-danger btn-sm" onclick = "return confirm('Are you sure?')">Delete</a>
   </td>
 </tr>
  {% endfor %}

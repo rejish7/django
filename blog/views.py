@@ -2,9 +2,9 @@ from django.shortcuts import render,redirect
 
 from django.http import HttpResponse
 from .model import User
+from django.contrib import messages
 
-# def index(request):
-#     return render(request,"index.html")
+
 
 def user(request):
     if request.method=="POST":
@@ -12,7 +12,10 @@ def user(request):
         email = request.POST.get("Email")
         address = request.POST.get("Address")
         age = request.POST.get("Age")
-        User.objects.create(Name=name,Email=email,Address=address,Age=age)
+        gender = request.POST.get("Gender")
+        country = request.POST.get("Country")
+        User.objects.create(Name=name,Email=email,Address=address,Age=age,Gender=gender,Country=country)
+        messages.success(request,'Data inserted successfully')
         return redirect("/")
     else:
         data={'userdata':User.objects.all(),}
@@ -30,6 +33,8 @@ def edit(request,id):
         obj.email = request.POST.get("Email")
         obj.address = request.POST.get("Address")
         obj.age = request.POST.get("Age")
+        obj.gender = request.POST.get("Gender")
+        obj.country = request.POST.get("Country")
         return redirect("/")
     else:
         data={'userdata':User.objects.get(id=id),
@@ -38,12 +43,3 @@ def edit(request,id):
 
 
 
-
-def  gallery(request):
-    return render(request,"gallery,html")
-
-# def faq(request):
-#     return render(request,"faq.html")
-
-# def travel(request):
-#     return render(request,"travel.html")
